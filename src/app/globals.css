@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #334155;
+  --accent-blue: #2563eb;
+  --accent-purple: #7c3aed;
+  --accent-cyan: #0891b2;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --muted: #94a3b8;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure `.light` explicitly sets the light variables when present on the root.
+   This makes theme switching robust even if other layers modify :root. */
+.light {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #334155;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to right, #2563eb, #7c3aed, #0891b2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .text-gradient {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .glass {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  /* Ensure default text color in light mode is dark */
+  .light {
+    color: #0f172a;
+  }
+
+  .dark {
+    color: #ffffff;
+  }
 }
