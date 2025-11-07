@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -68,6 +68,15 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-play carousel for mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="py-32 px-6 relative overflow-hidden">
@@ -175,27 +184,27 @@ export default function TestimonialsSection() {
             >
               {testimonials.map((testimonial, index) => (
                 <div key={index} className="w-full flex-shrink-0 px-2">
-                  <div className="p-8 rounded-2xl bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 backdrop-blur-sm">
+                  <div className="p-6 md:p-8 rounded-2xl bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-md">
                     <div className="flex items-start gap-4 mb-6">
                       <div
-                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white font-bold text-lg shrink-0`}
+                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center text-white font-bold text-lg shrink-0 shadow-md`}
                       >
                         {testimonial.avatar}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">
+                        <h4 className="text-lg font-bold text-slate-900 dark:text-white">
                           {testimonial.name}
                         </h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-slate-700 dark:text-gray-400 font-semibold">
                           {testimonial.role}
                         </p>
-                        <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                        <p className="text-sm font-bold text-blue-700 dark:text-blue-400">
                           {testimonial.company}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                    <p className="text-slate-900 dark:text-gray-300 leading-relaxed mb-6 font-semibold">
                       "{testimonial.content}"
                     </p>
 
@@ -223,10 +232,10 @@ export default function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                className={`rounded-full transition-all ${
                   index === activeIndex
-                    ? "w-8 bg-blue-600"
-                    : "bg-gray-300 dark:bg-gray-600"
+                    ? "w-8 h-2 bg-gradient-to-r from-blue-600 to-purple-600"
+                    : "w-2 h-2 bg-slate-300 dark:bg-gray-600"
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />

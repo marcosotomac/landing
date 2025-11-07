@@ -96,23 +96,23 @@ export default function IndustriesSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="glass rounded-2xl p-12 max-w-4xl mx-auto bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-md"
+          className="glass rounded-2xl p-6 md:p-12 max-w-4xl mx-auto bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-md"
         >
-          <div className="text-7xl mb-6 text-center">
+          <div className="text-5xl md:text-7xl mb-6 text-center">
             {industries[activeTab].icon}
           </div>
-          <h3 className="text-4xl font-bold mb-6 text-center text-slate-900 dark:text-white">
+          <h3 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6 text-center text-slate-900 dark:text-white">
             {industries[activeTab].name}
           </h3>
-          <p className="text-xl text-slate-900 dark:text-gray-300 mb-8 text-center font-bold">
+          <p className="text-base md:text-xl text-slate-900 dark:text-gray-300 mb-6 md:mb-8 text-center font-bold">
             {industries[activeTab].description}
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {industries[activeTab].benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-slate-100 dark:bg-white/5 rounded-xl p-6 text-center border border-slate-200 dark:border-white/10"
+                className="bg-slate-100 dark:bg-white/5 rounded-xl p-4 md:p-6 text-center border border-slate-200 dark:border-white/10"
               >
                 <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-accent-blue/20 flex items-center justify-center mx-auto mb-3">
                   <svg
@@ -129,7 +129,7 @@ export default function IndustriesSection() {
                     />
                   </svg>
                 </div>
-                <p className="text-slate-800 dark:text-white font-medium">
+                <p className="text-sm md:text-base text-slate-800 dark:text-white font-medium">
                   {benefit}
                 </p>
               </div>

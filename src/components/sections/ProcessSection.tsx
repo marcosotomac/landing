@@ -91,8 +91,11 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-32 px-6 relative">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-32 px-6 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 dark:via-purple-500/10 to-transparent" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -109,42 +112,132 @@ export default function ProcessSection() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Connection line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-cyan -translate-y-1/2" />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                className="relative"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+        {/* Desktop Roadmap */}
+        <div className="hidden lg:block">
+          <div className="relative">
+            {/* Connection Path */}
+            <svg
+              className="absolute top-0 left-0 w-full h-full pointer-events-none"
+              style={{ height: "300px" }}
+            >
+              <motion.path
+                d="M 150 150 Q 400 50, 650 150 T 1150 150"
+                stroke="url(#gradient)"
+                strokeWidth="3"
+                fill="none"
+                strokeDasharray="10 5"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                {/* Step card */}
-                <div className="glass rounded-2xl p-8 hover:bg-white dark:hover:bg-white/10 transition-all duration-300 h-full bg-white dark:bg-white/5 border-2 border-slate-300 dark:border-white/10 shadow-md">
-                  {/* Number badge */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-2xl font-bold mb-6 mx-auto">
+                transition={{ duration: 2, ease: "easeInOut" }}
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="50%" stopColor="#a855f7" />
+                  <stop offset="100%" stopColor="#06b6d4" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            {/* Steps */}
+            <div className="grid grid-cols-4 gap-8 relative pt-8">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  className="relative"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                >
+                  {/* Connector Dot */}
+                  <div className="flex justify-center mb-6">
+                    <motion.div
+                      className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.15 + 0.3, type: "spring" }}
+                    />
+                  </div>
+
+                  {/* Card */}
+                  <div className="relative group">
+                    {/* Glow effect */}
+                    <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300" />
+                    
+                    <div className="relative bg-white dark:bg-slate-900 rounded-2xl p-8 border-2 border-slate-300 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                      {/* Number Badge */}
+                      <div className="absolute -top-4 left-6 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                        {step.number}
+                      </div>
+
+                      {/* Icon */}
+                      <div className="mt-4 mb-6 text-blue-600 dark:text-blue-400 flex justify-center">
+                        {step.icon}
+                      </div>
+
+                      {/* Content */}
+                      <h3 className="text-xl font-bold mb-3 text-center text-slate-900 dark:text-white">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-slate-700 dark:text-gray-400 text-center leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Roadmap - Vertical */}
+        <div className="lg:hidden space-y-8">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              className="relative"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="flex gap-6">
+                {/* Timeline Line & Dot */}
+                <div className="flex flex-col items-center">
+                  {/* Number Badge */}
+                  <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
                     {step.number}
                   </div>
-
-                  {/* Icon */}
-                  <div className="text-accent-blue mb-4 flex justify-center">
-                    {step.icon}
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-4 text-center text-slate-900 dark:text-white">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-900 dark:text-gray-300 text-center font-bold">
-                    {step.description}
-                  </p>
+                  
+                  {/* Connecting Line */}
+                  {index < steps.length - 1 && (
+                    <div className="w-0.5 h-full bg-gradient-to-b from-blue-600 to-purple-600 mt-4 opacity-30" />
+                  )}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+
+                {/* Card */}
+                <div className="flex-1 pb-8">
+                  <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border-2 border-slate-300 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300">
+                    {/* Icon */}
+                    <div className="mb-4 text-blue-600 dark:text-blue-400">
+                      {step.icon}
+                    </div>
+
+                    {/* Content */}
+                    <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-slate-700 dark:text-gray-400 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

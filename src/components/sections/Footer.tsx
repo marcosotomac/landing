@@ -31,48 +31,9 @@ const footerSections = [
   },
 ];
 
-const logos = [
-  "Empresa A",
-  "Empresa B",
-  "Empresa C",
-  "Empresa D",
-  "Empresa E",
-  "Empresa F",
-];
-
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/10">
-      {/* Client logos section */}
-      <div className="py-16 px-6 border-b border-white/10">
-        <div className="max-w-7xl mx-auto">
-          <motion.p
-            className="text-center text-slate-700 dark:text-gray-400 mb-12 text-lg font-semibold"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            Empresas que confían en nosotros
-          </motion.p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            {logos.map((logo, index) => (
-              <motion.div
-                key={index}
-                className="glass rounded-xl p-6 flex items-center justify-center h-24 hover:bg-white dark:hover:bg-white/10 transition-all"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <span className="text-slate-700 dark:text-gray-400 font-semibold">
-                  {logo}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Main footer */}
       <div className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
