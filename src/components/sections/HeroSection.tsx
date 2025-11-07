@@ -17,16 +17,16 @@ export default function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
     >
       {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden will-change-transform">
         {/* Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:64px_64px] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)]" />
 
-        {/* Gradient orbs */}
+        {/* Gradient orbs - Reduced animations for performance */}
         <motion.div
-          className="absolute top-1/4 -left-48 w-96 h-96 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-3xl"
+          className="absolute top-1/4 -left-48 w-96 h-96 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-3xl will-change-transform"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -39,7 +39,7 @@ export default function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute top-1/3 -right-48 w-96 h-96 bg-purple-500/30 dark:bg-purple-500/20 rounded-full blur-3xl"
+          className="absolute top-1/3 -right-48 w-96 h-96 bg-purple-500/30 dark:bg-purple-500/20 rounded-full blur-3xl will-change-transform"
           animate={{
             scale: [1.2, 1, 1.2],
             x: [0, -50, 0],
@@ -52,11 +52,11 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
+        {/* Floating particles - Reduced from 20 to 10 for better performance */}
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-blue-500/50 dark:bg-blue-400/30 rounded-full"
+            className="absolute w-1 h-1 bg-blue-500/50 dark:bg-blue-400/30 rounded-full will-change-transform"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -76,7 +76,7 @@ export default function HeroSection() {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center"
+        className="relative z-10 max-w-7xl mx-auto px-6 py-24 text-center"
       >
         <motion.div
           initial={{ opacity: 0, y: 20 }}

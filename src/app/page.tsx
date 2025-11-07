@@ -1,13 +1,32 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
-import ProblemsSection from "@/components/sections/ProblemsSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import StatsSection from "@/components/sections/StatsSection";
-import IndustriesSection from "@/components/sections/IndustriesSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import ProcessSection from "@/components/sections/ProcessSection";
-import CTASection from "@/components/sections/CTASection";
-import Footer from "@/components/sections/Footer";
+
+// Lazy load sections that are below the fold for better initial load performance
+const ProblemsSection = dynamic(() => import("@/components/sections/ProblemsSection"), {
+  loading: () => <div className="h-screen" />,
+});
+const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"), {
+  loading: () => <div className="h-screen" />,
+});
+const StatsSection = dynamic(() => import("@/components/sections/StatsSection"), {
+  loading: () => <div className="h-96" />,
+});
+const IndustriesSection = dynamic(() => import("@/components/sections/IndustriesSection"), {
+  loading: () => <div className="h-screen" />,
+});
+const TestimonialsSection = dynamic(() => import("@/components/sections/TestimonialsSection"), {
+  loading: () => <div className="h-screen" />,
+});
+const ProcessSection = dynamic(() => import("@/components/sections/ProcessSection"), {
+  loading: () => <div className="h-screen" />,
+});
+const CTASection = dynamic(() => import("@/components/sections/CTASection"), {
+  loading: () => <div className="h-96" />,
+});
+const Footer = dynamic(() => import("@/components/sections/Footer"), {
+  loading: () => <div className="h-96" />,
+});
 
 export default function HomePage() {
   return (
