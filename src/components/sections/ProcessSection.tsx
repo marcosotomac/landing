@@ -94,7 +94,7 @@ export default function ProcessSection() {
     <section className="py-32 px-6 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 dark:via-purple-500/10 to-transparent" />
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           className="text-center mb-20"
@@ -166,7 +166,7 @@ export default function ProcessSection() {
                   <div className="relative group">
                     {/* Glow effect */}
                     <div className="absolute -inset-1 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-20 blur transition-opacity duration-300" />
-                    
+
                     <div className="relative bg-white dark:bg-slate-900 rounded-2xl p-8 border-2 border-slate-300 dark:border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300">
                       {/* Number Badge */}
                       <div className="absolute -top-4 left-6 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
@@ -211,7 +211,7 @@ export default function ProcessSection() {
                   <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
                     {step.number}
                   </div>
-                  
+
                   {/* Connecting Line */}
                   {index < steps.length - 1 && (
                     <div className="w-0.5 h-full bg-gradient-to-b from-blue-600 to-purple-600 mt-4 opacity-30" />
